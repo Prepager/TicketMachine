@@ -32,7 +32,7 @@ public class TicketMachine {
 	 */
 	public void printTicket() {
         // Check sufficient balance.
-		if (balance < 10) {
+		if (balance < ticketPrice) {
 			System.out.println("Insufficient balance. Input more money.");
 		}
 
