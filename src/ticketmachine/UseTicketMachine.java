@@ -4,65 +4,59 @@ public class UseTicketMachine
 {
 	public static void main(String[] arg)
 	{
-		TicketMachine automat = new TicketMachine();
-		java.util.Scanner tastatur = new java.util.Scanner(System.in);  // forbered
+		TicketMachine machine = new TicketMachine();
+		java.util.Scanner keyboard = new java.util.Scanner(System.in);
 
-		System.out.println("BenytBilletautomat version 3");
+		System.out.println("UseTicketMachine V3");
 		System.out.println();
 		
 		while (true) {
 			System.out.println("-----------------------------------------------");
-			System.out.println("En billet koster " + automat.getBilletpris() + " kroner");
-			System.out.println("Balancen er på " + automat.getBalance() + " kroner");
+			System.out.println("Ticket Price: " + machine.getTicketPrice() + " DKK");
+			System.out.println("Balance: " + machine.getBalance() + " DKK");
 			System.out.println();
-			System.out.println("Tast 1 for at indbetale penge");
-			System.out.println("Tast 2 for at udskrive din billet");
-			System.out.println("Tast 3 for at få returpengene");
+			System.out.println("Click 1 to input money.");
+			System.out.println("Click 2 to print ticket.");
+			System.out.println("Click 3 to recieve change.");
 			System.out.println();
-			System.out.println("Tast 10 for at logge ind som montør");
-			if (automat.erMontør()) {
-				System.out.println("Tast 11 for at se status (montør)");
-				System.out.println("Tast 12 for at nulstille (montør)");
-				System.out.println("Tast 13 for at sætte billetpris (montør)");
-				System.out.println("Tast 14 for at logge ud af montørtilstand");
+			System.out.println("Click 10 to login as admin.");
+
+			if (machine.isAdmin()) {
+				System.out.println("Click 11 to see status. (admin)");
+				System.out.println("Click 12 to reset machine. (admin)");
+				System.out.println("Click 13 to set ticket price. (admin)");
+				System.out.println("Click 14 to logout of admin mode. (admin)");
 			}
-			int valg = tastatur.nextInt();
-			tastatur.nextLine();
+
+			int selection = keyboard.nextInt();
+			keyboard.nextLine();
 		
-			if (valg==1) {
-				System.out.print("Skriv beløb: ");
-				int beløb = tastatur.nextInt();
-				automat.indsætPenge(beløb);
-			}
-			else if (valg==2) {
-				automat.udskrivBillet();
-			}
-			else if (valg==3) {
-				int beløb = automat.returpenge();
-				System.out.println("Du fik "+beløb+" retur retur");
-			}
-			else if (valg==10) {
-				System.out.print("Skriv kode: ");
-				String kode = tastatur.next();
-				automat.montørLogin(kode);
-			}
-			else if (valg==11) {
-				System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
-				System.out.println("Total indkomst: " + automat.getTotal()+" kr");
-			}
-			else if (valg==12) {
-				automat.nulstil();
-			}
-			else if (valg==13) {
-				System.out.print("Skriv beløb: ");
-				int beløb = tastatur.nextInt();
-				automat.setBilletpris(beløb);
-			}
-			else if (valg==14) {
-				automat.montørLogin("");;
-			}
-			else {
-				System.out.println("Ugyldigt valg, prøv igen");
+			if (selection == 1) {
+				System.out.print("Input amount: ");
+				int beløb = keyboard.nextInt();
+				machine.inputMoney(beløb);
+			} else if (selection == 2) {
+				machine.printTicket();
+			} else if (selection == 3) {
+				int beløb = machine.returnChange();
+				System.out.println("You received "+beløb+" DKK change.");
+			} else if (selection == 10) {
+				System.out.print("Input password: ");
+				String kode = keyboard.next();
+				machine.adminLogin(kode);
+			} else if (selection == 11) {
+				System.out.println("Sold tickets: " + machine.getSoldTickets());
+				System.out.println("Total income: " + machine.getTotal()+" dKK");
+            } else if (selection == 12) {
+				machine.reset();
+			} else if (selection == 13) {
+				System.out.print("Input amount:: ");
+				int beløb = keyboard.nextInt();
+				machine.setTicketPrice(beløb);
+			} else if (selection==14) {
+				machine.adminLogin("");
+			} else {
+				System.out.println("Invalid selection, try again.");
 			}
 		}
 	}

@@ -1,125 +1,145 @@
 package ticketmachine;
 
 public class TicketMachine {
-	private int billetpris;    // Prisen for én billet.
-	private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
-	private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
-	private boolean montørtilstand;
+	private int ticketPrice = 10;
+	private int balance = 0;
+	private int soldTickets = 0;
+	private boolean adminMode;
 
 	/**
-	 * Opret en billetautomat der sælger billetter til 10 kr.
+	 * Return the ticket price.
 	 */
-	public TicketMachine() {
-		billetpris = 10;
-		balance = 0;
-		antalBilletterSolgt = 0;
+	public int getTicketPrice() {
+		return ticketPrice;
 	}
 
 	/**
-	 * Giver prisen for en billet. 
+	 * Input money into customer balance.
 	 */
-	public int getBilletpris() {
-		int resultat = billetpris;
-		return resultat;
+	public void inputMoney(int amount) {
+		balance = balance + amount;
 	}
 
 	/**
-	 * Modtag nogle penge (i kroner) fra en kunde.
-	 */
-	public void indsætPenge(int beløb) {
-		balance = balance + beløb;
-	}
-
-	/**
-	 * Giver balancen (beløbet maskinen har modtaget til den næste billet).
+	 * Return the customers balance.
 	 */
 	public int getBalance() {
 		return balance;
 	}
 
 	/**
-	 * Udskriv en billet.
-	 * Opdater total og nedskriv balancen med billetprisen
+	 * Print ticket if sufficient balance.
 	 */
-	public void udskrivBillet() {
-		if (balance<10) {
-			System.out.println("Du mangler at indbetale nogle penge");
+	public void printTicket() {
+        // Check sufficient balance.
+		if (balance < 10) {
+			System.out.println("Insufficient balance. Input more money.");
 		}
+
+        // Output ticket to console.
 		System.out.println("##########B##T#########");
 		System.out.println("# BlueJ Trafikselskab #");
 		System.out.println("#                     #");
-		System.out.println("#        Billet       #");
-		System.out.println("#        " + billetpris + " kr.       #");
+		System.out.println("#        Ticket       #");
+		System.out.println("#        " + ticketPrice + " kr.       #");
 		System.out.println("#                     #");
 		System.out.println("##########B##T#########");
-		System.out.println("# Du har " + (balance-billetpris) + " kr til gode       #");
+		System.out.println("# You have " + (balance-ticketPrice) + " DKK left       #");
 		System.out.println("##########B##T#########");
 		System.out.println();
 
-		antalBilletterSolgt = antalBilletterSolgt + 1;
-		balance = balance - billetpris; // Billetter koster 10 kroner
+        // Increase sold count.
+		soldTickets++;
+        
+        // Decrease balance by price.
+		balance -= ticketPrice;
 	}
-
-
-	public int returpenge() {
-		int returbeløb = balance;
+    
+    /**
+     * Return the change amount to the customer.
+     */
+	public int returnChange() {
+		int amount = balance;
 		balance = 0;
-		System.out.println("Du får "+returbeløb+" kr retur");
-		return returbeløb;
+
+		System.out.println("You will receive " + amount + " DKK.");
+
+		return amount;
 	}
 
-	
-	void montørLogin(String adgangskode) {
-		if ("1234".equals(adgangskode)) {
-			montørtilstand = true;
-			System.out.println("Montørtilstand aktiveret");
-			System.out.println("Du kan nu angive billetpris");
+    /**
+     * Toggle admin mode if correct password.
+     */
+	void adminLogin(String password) {
+		if ("1234".equals(password)) {
+			adminMode = true;
+
+			System.out.println("Admin mode activated!");
+			System.out.println("You may now enter ticket price.");
 		} else {
-			montørtilstand = false;
-			System.out.println("Montørtilstand deaktiveret");
+			adminMode = false;
+
+			System.out.println("Admin mode deactivated!");
 		}
 	}
 
-
+    /**
+     * Return the total amount of money earned.
+     */
 	public int getTotal() {
-		if (montørtilstand) {
-			return billetpris * antalBilletterSolgt;
+		if (adminMode) {
+			return ticketPrice * soldTickets;
 		} else {
-			System.out.println("Afvist - log ind først");
+			System.out.println("Rejected - You must login.");
 			return 0;
 		}
 	}
 
-	public int getAntalBilletterSolgt() {
-		if (montørtilstand) {
-			return antalBilletterSolgt;
+    /**
+     * Return the amount of sold tickets.
+     */
+	public int getSoldTickets() {
+		if (adminMode) {
+			return soldTickets;
 		} else {
-			System.out.println("Afvist - log ind først");
+			System.out.println("Rejected - You must login.");
 			return 0;
 		}
 	}
 
-	public void setBilletpris(int billetpris) {
-		this.billetpris = billetpris;
+    /**
+     * Set the price of the ticket.
+     */
+	public void setTicketPrice(int price) {
+		this.ticketPrice = price;
 	}
 
-	public void nulstil() {
-		if (montørtilstand) {
-			antalBilletterSolgt = 0;
+    /**
+     * Reset the admin mode login.
+     */
+	public void reset() {
+		if (adminMode) {
+			soldTickets = 0;
 		} else {
-			System.out.println("Afvist - log ind først");
+			System.out.println("Rejected - You must login.");
 		}
 	}
 
-	public void setAntalBilletterSolgt(int antalBilletterSolgt) {
-		if (montørtilstand) {
-			this.antalBilletterSolgt = antalBilletterSolgt;
+    /**
+     * Set the amount of tickets sold.
+     */
+	public void setSoldTickets(int amount) {
+		if (adminMode) {
+			this.soldTickets = amount;
 		} else {
-			System.out.println("Afvist - log ind først");
+			System.out.println("Rejected - You must login.");
 		}
 	}
 
-	public boolean erMontør() {
-		return montørtilstand;
+    /**
+     * Return weather in admin mode or not. 
+     */
+	public boolean isAdmin() {
+		return adminMode;
 	}
 }
