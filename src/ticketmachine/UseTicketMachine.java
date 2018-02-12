@@ -1,12 +1,10 @@
-package automat;
+package ticketmachine;
 
-
-
-public class BenytBilletautomat
+public class UseTicketMachine
 {
 	public static void main(String[] arg)
 	{
-		Billetautomat automat = new Billetautomat();
+		TicketMachine automat = new TicketMachine();
 		java.util.Scanner tastatur = new java.util.Scanner(System.in);  // forbered
 
 		System.out.println("BenytBilletautomat version 3");

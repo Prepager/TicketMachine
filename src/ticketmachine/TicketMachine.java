@@ -1,8 +1,6 @@
-package automat;
-/**
- * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
- */
-public class Billetautomat {
+package ticketmachine;
+
+public class TicketMachine {
 	private int billetpris;    // Prisen for én billet.
 	private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
 	private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
@@ -11,7 +9,7 @@ public class Billetautomat {
 	/**
 	 * Opret en billetautomat der sælger billetter til 10 kr.
 	 */
-	public Billetautomat() {
+	public TicketMachine() {
 		billetpris = 10;
 		balance = 0;
 		antalBilletterSolgt = 0;

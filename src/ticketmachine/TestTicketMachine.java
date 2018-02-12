@@ -1,10 +1,10 @@
-package automat;
+package ticketmachine;
 
-public class TjekBilletautomat
+public class TestTicketMachine
 {
 	public static void main(String[] arg)
 	{
-		Billetautomat automat = new Billetautomat();
+		TicketMachine automat = new TicketMachine();
 
 		int antalFejl = 0;
 		int retur;
