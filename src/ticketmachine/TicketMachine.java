@@ -10,7 +10,7 @@ public class TicketMachine {
     * Return the ticket price.
     */
     public int getTicketPrice() {
-        return ticketPrice;
+        return this.ticketPrice;
     }
 
     /**
@@ -18,14 +18,14 @@ public class TicketMachine {
     */
     public void inputMoney(int amount) {
         System.out.println("Added " + amount + " to the balance.");
-        balance = balance + amount;
+        this.balance += amount;
     }
 
     /**
     * Return the customers balance.
     */
     public int getBalance() {
-        return balance;
+        return this.balance;
     }
 
     /**
@@ -33,7 +33,7 @@ public class TicketMachine {
     */
     public void printTicket() {
         // Check sufficient balance.
-        if (balance < ticketPrice) {
+        if (this.balance < this.ticketPrice) {
             System.out.println("Insufficient balance. Input more money.");
         }
 
@@ -42,20 +42,20 @@ public class TicketMachine {
         System.out.println("# BlueJ Trafikselskab #");
         System.out.println("#                     #");
         System.out.println("#        Ticket       #");
-        System.out.println("#        " + ticketPrice + " kr.       #");
+        System.out.println("#        " + this.ticketPrice + " kr.       #");
         System.out.println("#                     #");
         System.out.println("##########B##T#########");
-        System.out.println("# You have " + (balance-ticketPrice) + " DKK left       #");
+        System.out.println("# You have " + (this.balance - this.ticketPrice) + " DKK left       #");
         System.out.println("##########B##T#########");
         System.out.println();
 
         // Increase sold count.
         System.out.println("Increased ticket sale count.");
-        soldTickets++;
+        this.soldTickets++;
 
         // Decrease balance by price.
         System.out.println("Removed ticket price from balance.");
-        balance -= ticketPrice;
+        this.balance -= this.ticketPrice;
     }
 
     /**
@@ -63,8 +63,8 @@ public class TicketMachine {
     */
     public int returnChange() {
         System.out.println("Reset balance.");
-        int amount = balance;
-        balance = 0;
+        int amount = this.balance;
+        this.balance = 0;
 
         System.out.println("You will receive " + amount + " DKK.");
 
@@ -76,12 +76,12 @@ public class TicketMachine {
     */
     void adminLogin(String password) {
         if ("1234".equals(password)) {
-            adminMode = true;
+            this.adminMode = true;
 
             System.out.println("Admin mode activated!");
             System.out.println("You may now enter ticket price.");
         } else {
-            adminMode = false;
+            this.adminMode = false;
 
             System.out.println("Admin mode deactivated!");
         }
@@ -91,8 +91,8 @@ public class TicketMachine {
     * Return the total amount of money earned.
     */
     public int getTotal() {
-        if (adminMode) {
-            return ticketPrice * soldTickets;
+        if (this.adminMode) {
+            return this.ticketPrice * this.soldTickets;
         } else {
             System.out.println("Rejected - You must login.");
             return 0;
@@ -103,8 +103,8 @@ public class TicketMachine {
     * Return the amount of sold tickets.
     */
     public int getSoldTickets() {
-        if (adminMode) {
-            return soldTickets;
+        if (this.adminMode) {
+            return this.soldTickets;
         } else {
             System.out.println("Rejected - You must login.");
             return 0;
@@ -123,9 +123,9 @@ public class TicketMachine {
     * Reset the admin mode login.
     */
     public void reset() {
-        if (adminMode) {
+        if (this.adminMode) {
             System.out.println("Reset sold ticket count.");
-            soldTickets = 0;
+            this.soldTickets = 0;
         } else {
             System.out.println("Rejected - You must login.");
         }
@@ -135,7 +135,7 @@ public class TicketMachine {
     * Set the amount of tickets sold.
     */
     public void setSoldTickets(int amount) {
-        if (adminMode) {
+        if (this.adminMode) {
             System.out.println("Set sold ticket count to " + amount);
             this.soldTickets = amount;
         } else {
@@ -147,6 +147,6 @@ public class TicketMachine {
     * Return weather in admin mode or not. 
     */
     public boolean isAdmin() {
-        return adminMode;
+        return this.adminMode;
     }
 }
