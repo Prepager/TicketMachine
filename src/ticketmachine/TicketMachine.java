@@ -1,5 +1,8 @@
 package ticketmachine;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 public class TicketMachine {
     /**
      * The per ticket price.
@@ -24,7 +27,12 @@ public class TicketMachine {
     /**
      * The admin password.
      */
-    private String adminPassword = "1234";
+    private final String adminPassword = "1234";
+    
+    /**
+     * 
+     */
+    private ArrayList<String> transactions = new ArrayList<String>();
     
     /**
     * Return the ticket price.
@@ -49,7 +57,7 @@ public class TicketMachine {
         }
         
         // Add amount to balance.
-        System.out.println("Added " + amount + " to the balance.");
+        this.logAction("Added " + amount + " DKK.");
         this.balance += amount;
         
         // Return the total balance.
@@ -74,6 +82,9 @@ public class TicketMachine {
             System.out.println("Insufficient balance. Input more money.");
             return;
         }
+        
+        // Log printing action.
+        this.logAction("Printed ticket.");
 
         // Output ticket to console.
         System.out.println("##########B##T#########");
@@ -107,7 +118,7 @@ public class TicketMachine {
         this.balance = 0;
 
         // Output notification.
-        System.out.println("You will receive " + amount + " DKK.");
+        this.logAction("Returned " + amount + " DKK.");
 
         // Return amount.
         return amount;
@@ -230,5 +241,36 @@ public class TicketMachine {
     */
     public boolean isAdmin() {
         return this.adminMode;
+    }
+    
+    /**
+     * Save an action to the transaction log.
+     *
+     * @param action The action to be logged.
+     */
+    protected void logAction(String action) {
+        // Add action to log.
+        this.transactions.add(LocalDateTime.now() + ": " + action);
+        
+        // Output action to console.
+        System.out.println(LocalDateTime.now() + ": " + action);
+    }
+    
+    /**
+     * Output transactions to console.
+     */
+    public void printLog() {
+        // Check admin mode.
+        if (this.adminMode) {
+            // Output transactions to console.
+            for (String transaction: this.transactions) {
+                System.out.println(transaction);
+            }
+
+            return;
+        }
+
+        // Output rejected message.
+        System.out.println("Rejected - You must login.");
     }
 }

@@ -26,6 +26,7 @@ public class UseTicketMachine
 				System.out.println("Click 12 to reset machine. (admin)");
 				System.out.println("Click 13 to set ticket price. (admin)");
 				System.out.println("Click 14 to logout of admin mode. (admin)");
+				System.out.println("Click 15 to print transaction log. (admin)");
 			}
 
 			int selection = keyboard.nextInt();
@@ -55,7 +56,9 @@ public class UseTicketMachine
 				machine.setTicketPrice(beløb);
 			} else if (selection==14) {
 				machine.adminLogin("");
-			} else {
+			} else if (selection == 15) {
+                                machine.printLog();
+                        } else {
 				System.out.println("Invalid selection, try again.");
 			}
 		}
