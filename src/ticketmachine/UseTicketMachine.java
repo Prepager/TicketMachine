@@ -9,7 +9,7 @@ public class UseTicketMachine
 
 		System.out.println("UseTicketMachine V3");
 		System.out.println();
-		
+
 		while (true) {
 			System.out.println("-----------------------------------------------");
 			System.out.println("Ticket Price: " + machine.getTicketPrice() + " DKK");
@@ -30,7 +30,7 @@ public class UseTicketMachine
 
 			int selection = keyboard.nextInt();
 			keyboard.nextLine();
-		
+
 			if (selection == 1) {
 				System.out.print("Input amount: ");
 				int beløb = keyboard.nextInt();
@@ -47,7 +47,7 @@ public class UseTicketMachine
 			} else if (selection == 11) {
 				System.out.println("Sold tickets: " + machine.getSoldTickets());
 				System.out.println("Total income: " + machine.getTotal()+" dKK");
-            } else if (selection == 12) {
+			} else if (selection == 12) {
 				machine.reset();
 			} else if (selection == 13) {
 				System.out.print("Input amount:: ");
