@@ -35,6 +35,7 @@ public class TicketMachine {
         // Check sufficient balance.
         if (this.balance < this.ticketPrice) {
             System.out.println("Insufficient balance. Input more money.");
+            return;
         }
 
         // Output ticket to console.
@@ -62,53 +63,67 @@ public class TicketMachine {
     * Return the change amount to the customer.
     */
     public int returnChange() {
-        System.out.println("Reset balance.");
+        // Save balance and reset.
         int amount = this.balance;
         this.balance = 0;
 
+        // Output notification.
         System.out.println("You will receive " + amount + " DKK.");
 
+        // Return amount.
         return amount;
     }
 
     /**
     * Toggle admin mode if correct password.
     */
-    void adminLogin(String password) {
+    public void adminLogin(String password) {
+        // Check password.
         if ("1234".equals(password)) {
+            // Enable admin mode.
             this.adminMode = true;
 
+            // Output login notification.
             System.out.println("Admin mode activated!");
             System.out.println("You may now enter ticket price.");
-        } else {
-            this.adminMode = false;
 
-            System.out.println("Admin mode deactivated!");
+            // Return out of function.
+            return;
         }
+
+        // Disable admin mode.
+        this.adminMode = false;
+
+        // Output logout notification.
+        System.out.println("Admin mode deactivated!");
     }
 
     /**
     * Return the total amount of money earned.
     */
     public int getTotal() {
+        // Check admin mode and return earnings.
         if (this.adminMode) {
             return this.ticketPrice * this.soldTickets;
-        } else {
-            System.out.println("Rejected - You must login.");
-            return 0;
         }
+
+        // Output rejected message and return 0.
+        System.out.println("Rejected - You must login.");
+        return 0;
     }
 
     /**
     * Return the amount of sold tickets.
     */
     public int getSoldTickets() {
+        // Check admin mode and return ticket sales count.
         if (this.adminMode) {
             return this.soldTickets;
-        } else {
-            System.out.println("Rejected - You must login.");
-            return 0;
         }
+
+        // Output rejected message and return 0.
+        System.out.println("Rejected - You must login.");
+        return 0;
     }
 
     /**
@@ -123,24 +138,32 @@ public class TicketMachine {
     * Reset the admin mode login.
     */
     public void reset() {
+        // Check admin mode.
         if (this.adminMode) {
+            // Reset sold ticket count.
             System.out.println("Reset sold ticket count.");
             this.soldTickets = 0;
-        } else {
-            System.out.println("Rejected - You must login.");
+            return;
         }
+
+        // Output rejected message.
+        System.out.println("Rejected - You must login.");
     }
 
     /**
     * Set the amount of tickets sold.
     */
     public void setSoldTickets(int amount) {
+        // Check admin mode.
         if (this.adminMode) {
+            // Set sold ticket count.
             System.out.println("Set sold ticket count to " + amount);
             this.soldTickets = amount;
-        } else {
-            System.out.println("Rejected - You must login.");
+            return;
         }
+
+        // Output rejected message.
+        System.out.println("Rejected - You must login.");
     }
 
     /**
