@@ -22,6 +22,12 @@ public class TicketMachine {
     * @return int The customers total balance.
     */
     public int addMoney(int amount) {
+        // Check if amount is negative
+        if (amount < 0) {
+            System.out.println("Amount must be a positive number.");
+            return this.balance;
+        }
+        
         // Add amount to balance.
         System.out.println("Added " + amount + " to the balance.");
         this.balance += amount;
