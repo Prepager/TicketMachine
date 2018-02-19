@@ -15,7 +15,7 @@ public class TestTicketMachine
         }
 
         System.out.println("*** Test sales of tickets.");
-        machine.inputMoney(10);
+        machine.addMoney(10);
         machine.printTicket();
         change = machine.returnChange();
         if (change != 0) {
@@ -24,7 +24,7 @@ public class TestTicketMachine
         }
 
         System.out.println("*** Test return change.");
-        machine.inputMoney(100);
+        machine.addMoney(100);
         machine.printTicket();
         change = machine.returnChange();
         if (change != 90) {
@@ -57,7 +57,7 @@ public class TestTicketMachine
 
         System.out.println("*** Test other ticket prices.");
         machine.setTicketPrice(20);
-        machine.inputMoney(100);
+        machine.addMoney(100);
         machine.printTicket();
         change = machine.returnChange();
         if (change != 80) {

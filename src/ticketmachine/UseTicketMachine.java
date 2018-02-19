@@ -34,7 +34,7 @@ public class UseTicketMachine
 			if (selection == 1) {
 				System.out.print("Input amount: ");
 				int beløb = keyboard.nextInt();
-				machine.inputMoney(beløb);
+				machine.addMoney(beløb);
 			} else if (selection == 2) {
 				machine.printTicket();
 			} else if (selection == 3) {

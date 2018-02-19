@@ -8,21 +8,32 @@ public class TicketMachine {
 
     /**
     * Return the ticket price.
+    *
+    * @return int The ticket price.
     */
     public int getTicketPrice() {
         return this.ticketPrice;
     }
 
     /**
-    * Input money into customer balance.
+    * Add money into customers balance.
+    *
+    * @param amount The amount to be added.
+    * @return int The customers total balance.
     */
-    public void inputMoney(int amount) {
+    public int addMoney(int amount) {
+        // Add amount to balance.
         System.out.println("Added " + amount + " to the balance.");
         this.balance += amount;
+        
+        // Return the total balance.
+        return this.balance;
     }
 
     /**
     * Return the customers balance.
+    *
+    * @return int The customers total balance.
     */
     public int getBalance() {
         return this.balance;
@@ -32,7 +43,7 @@ public class TicketMachine {
     * Print ticket if sufficient balance.
     */
     public void printTicket() {
-        // Check sufficient balance.
+        // Check for sufficient balance.
         if (this.balance < this.ticketPrice) {
             System.out.println("Insufficient balance. Input more money.");
             return;
@@ -61,6 +72,8 @@ public class TicketMachine {
 
     /**
     * Return the change amount to the customer.
+    *
+    * @return int The amount to be paid back.
     */
     public int returnChange() {
         // Save balance and reset.
@@ -76,8 +89,11 @@ public class TicketMachine {
 
     /**
     * Toggle admin mode if correct password.
+    *
+    * @param password The password to be checked.
+    * @return boolean Whether or not attempt was successful.
     */
-    public void adminLogin(String password) {
+    public boolean adminLogin(String password) {
         // Check password.
         if ("1234".equals(password)) {
             // Enable admin mode.
@@ -88,18 +104,21 @@ public class TicketMachine {
             System.out.println("You may now enter ticket price.");
 
             // Return out of function.
-            return;
+            return true;
         }
-
-        // Disable admin mode.
-        this.adminMode = false;
 
         // Output logout notification.
         System.out.println("Admin mode deactivated!");
+
+        // Disable admin mode.
+        this.adminMode = false;
+        return false;
     }
 
     /**
     * Return the total amount of money earned.
+    *
+    * @return int The total earnings or 0.
     */
     public int getTotal() {
         // Check admin mode and return earnings.
@@ -114,6 +133,8 @@ public class TicketMachine {
 
     /**
     * Return the amount of sold tickets.
+    *
+    * @return int The total amount of tickets sold or 0.
     */
     public int getSoldTickets() {
         // Check admin mode and return ticket sales count.
@@ -128,6 +149,8 @@ public class TicketMachine {
 
     /**
     * Set the price of the ticket.
+    *
+    * @param price The price for a single ticket.
     */
     public void setTicketPrice(int price) {
         // Check admin mode and set ticket price.
@@ -158,6 +181,8 @@ public class TicketMachine {
 
     /**
     * Set the amount of tickets sold.
+    *
+    * @param amount The amount of tickets sold.
     */
     public void setSoldTickets(int amount) {
         // Check admin mode.
@@ -174,6 +199,8 @@ public class TicketMachine {
 
     /**
     * Return weather in admin mode or not. 
+    *
+    * @return boolean Whether or not in admin mode.
     */
     public boolean isAdmin() {
         return this.adminMode;
