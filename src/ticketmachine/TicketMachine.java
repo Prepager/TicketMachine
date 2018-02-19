@@ -17,6 +17,7 @@ public class TicketMachine {
     * Input money into customer balance.
     */
     public void inputMoney(int amount) {
+        System.out.println("Added " + amount + " to the balance.");
         balance = balance + amount;
     }
 
@@ -49,9 +50,11 @@ public class TicketMachine {
         System.out.println();
 
         // Increase sold count.
+        System.out.println("Increased ticket sale count.");
         soldTickets++;
 
         // Decrease balance by price.
+        System.out.println("Removed ticket price from balance.");
         balance -= ticketPrice;
     }
 
@@ -59,6 +62,7 @@ public class TicketMachine {
     * Return the change amount to the customer.
     */
     public int returnChange() {
+        System.out.println("Reset balance.");
         int amount = balance;
         balance = 0;
 
@@ -111,6 +115,7 @@ public class TicketMachine {
     * Set the price of the ticket.
     */
     public void setTicketPrice(int price) {
+        System.out.println("Set the ticket price to " + price);
         this.ticketPrice = price;
     }
 
@@ -119,6 +124,7 @@ public class TicketMachine {
     */
     public void reset() {
         if (adminMode) {
+            System.out.println("Reset sold ticket count.");
             soldTickets = 0;
         } else {
             System.out.println("Rejected - You must login.");
@@ -130,6 +136,7 @@ public class TicketMachine {
     */
     public void setSoldTickets(int amount) {
         if (adminMode) {
+            System.out.println("Set sold ticket count to " + amount);
             this.soldTickets = amount;
         } else {
             System.out.println("Rejected - You must login.");
