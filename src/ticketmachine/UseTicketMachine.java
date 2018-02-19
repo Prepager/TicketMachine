@@ -38,7 +38,7 @@ public class UseTicketMachine
 			} else if (selection == 2) {
 				machine.printTicket();
 			} else if (selection == 3) {
-				int beløb = machine.returnChange();
+				double beløb = machine.returnChange();
 				System.out.println("You received "+beløb+" DKK change.");
 			} else if (selection == 10) {
 				System.out.print("Input password: ");
