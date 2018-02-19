@@ -1,17 +1,32 @@
 package ticketmachine;
 
 public class TicketMachine {
-    private int ticketPrice = 10;
-    private int balance = 0;
+    /**
+     * The per ticket price.
+     */
+    private double ticketPrice = 10;
+    
+    /**
+     * The total customer balance.
+     */
+    private double balance = 0;
+    
+    /**
+     * The amount of tickets sold.
+     */
     private int soldTickets = 0;
+    
+    /**
+     * The current admin mode status.
+     */
     private boolean adminMode;
 
     /**
     * Return the ticket price.
     *
-    * @return int The ticket price.
+    * @return double The ticket price.
     */
-    public int getTicketPrice() {
+    public double getTicketPrice() {
         return this.ticketPrice;
     }
 
@@ -19,9 +34,9 @@ public class TicketMachine {
     * Add money into customers balance.
     *
     * @param amount The amount to be added.
-    * @return int The customers total balance.
+    * @return double The customers total balance.
     */
-    public int addMoney(int amount) {
+    public double addMoney(int amount) {
         // Check if amount is negative
         if (amount < 0) {
             System.out.println("Amount must be a positive number.");
@@ -39,9 +54,9 @@ public class TicketMachine {
     /**
     * Return the customers balance.
     *
-    * @return int The customers total balance.
+    * @return double The customers total balance.
     */
-    public int getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 
@@ -79,11 +94,11 @@ public class TicketMachine {
     /**
     * Return the change amount to the customer.
     *
-    * @return int The amount to be paid back.
+    * @return double The amount to be paid back.
     */
-    public int returnChange() {
+    public double returnChange() {
         // Save balance and reset.
-        int amount = this.balance;
+        double amount = this.balance;
         this.balance = 0;
 
         // Output notification.
@@ -124,9 +139,9 @@ public class TicketMachine {
     /**
     * Return the total amount of money earned.
     *
-    * @return int The total earnings or 0.
+    * @return double The total earnings or 0.
     */
-    public int getTotal() {
+    public double getTotal() {
         // Check admin mode and return earnings.
         if (this.adminMode) {
             return this.ticketPrice * this.soldTickets;

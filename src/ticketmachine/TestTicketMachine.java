@@ -7,7 +7,7 @@ public class TestTicketMachine
         TicketMachine machine = new TicketMachine();
 
         int fails = 0;
-        int change;
+        double change;
 
         change = machine.getTicketPrice();
         if (change != 10) {
