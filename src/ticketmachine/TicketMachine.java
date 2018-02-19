@@ -130,8 +130,14 @@ public class TicketMachine {
     * Set the price of the ticket.
     */
     public void setTicketPrice(int price) {
-        System.out.println("Set the ticket price to " + price);
-        this.ticketPrice = price;
+        // Check admin mode and set ticket price.
+        if (this.adminMode) {
+            this.ticketPrice = price;
+            return;
+        }
+
+        // Output rejected message.
+        System.out.println("Rejected - You must login.");
     }
 
     /**
