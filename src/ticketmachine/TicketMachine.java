@@ -22,6 +22,11 @@ public class TicketMachine {
     private boolean adminMode;
 
     /**
+     * The admin password.
+     */
+    private String adminPassword = "1234";
+    
+    /**
     * Return the ticket price.
     *
     * @return double The ticket price.
@@ -116,7 +121,7 @@ public class TicketMachine {
     */
     public boolean adminLogin(String password) {
         // Check password.
-        if ("1234".equals(password)) {
+        if (this.adminPassword.equals(password)) {
             // Enable admin mode.
             this.adminMode = true;
 
