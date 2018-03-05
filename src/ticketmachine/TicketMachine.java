@@ -1,16 +1,12 @@
 package ticketmachine;
 
+import java.util.ArrayList;
+
 import ticketmachine.logging.Logger;
 import ticketmachine.logging.Action;
+import ticketmachine.tickets.Ticket;
 
 public class TicketMachine {
-    /**
-     * The per ticket price.
-     *
-     * @var double
-     */
-    private double ticketPrice = 10;
-    
     /**
      * The total customer balance.
      *
@@ -45,15 +41,13 @@ public class TicketMachine {
      * @var Logger
      */
     private final Logger transactions = new Logger();
-
+    
     /**
-    * Return the ticket price.
-    *
-    * @return double The ticket price.
-    */
-    public double getTicketPrice() {
-        return this.ticketPrice;
-    }
+     * The list of ticket types.
+     *
+     * @var ArrayList
+     */
+    private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
     /**
     * Add money into customers balance.
@@ -87,10 +81,26 @@ public class TicketMachine {
 
     /**
     * Print ticket if sufficient balance.
+    *
+    * @param ticket
     */
-    public void printTicket() {
+    public void printTicket(int ticket) {
+        // Find the selected ticket.
+        Ticket selectedTicket = null;
+        for(Ticket item: this.tickets) {
+            if (item.getID() == ticket) {
+                selectedTicket = item;
+            }
+        }
+        
+        // Return out if not found.
+        if (selectedTicket == null) {
+            System.out.println("Unable to find ticket with id: " + ticket);
+            return;
+        }
+        
         // Check for sufficient balance.
-        if (this.balance < this.ticketPrice) {
+        if (this.balance < selectedTicket.getPrice()) {
             System.out.println("Insufficient balance. Input more money.");
             return;
         }
@@ -103,10 +113,10 @@ public class TicketMachine {
         System.out.println("# BlueJ Trafikselskab #");
         System.out.println("#                     #");
         System.out.println("#        Ticket       #");
-        System.out.println("#        " + this.ticketPrice + " kr.       #");
+        System.out.println("#        " + selectedTicket.getPrice() + " kr.       #");
         System.out.println("#                     #");
         System.out.println("##########B##T#########");
-        System.out.println("# You have " + (this.balance - this.ticketPrice) + " DKK left       #");
+        System.out.println("# You have " + (this.balance - selectedTicket.getPrice()) + " DKK left       #");
         System.out.println("##########B##T#########");
         System.out.println();
 
@@ -116,7 +126,7 @@ public class TicketMachine {
 
         // Decrease balance by price.
         System.out.println("Removed ticket price from balance.");
-        this.balance -= this.ticketPrice;
+        this.balance -= selectedTicket.getPrice();
     }
 
     /**
@@ -172,7 +182,8 @@ public class TicketMachine {
     public double getTotal() {
         // Check admin mode and return earnings.
         if (this.adminMode) {
-            return this.ticketPrice * this.soldTickets;
+            return 1; // @wip
+            //return this.ticketPrice * this.soldTickets;
         }
 
         // Output rejected message and return 0.
@@ -194,22 +205,6 @@ public class TicketMachine {
         // Output rejected message and return 0.
         System.out.println("Rejected - You must login.");
         return 0;
-    }
-
-    /**
-    * Set the price of the ticket.
-    *
-    * @param price The price for a single ticket.
-    */
-    public void setTicketPrice(int price) {
-        // Check admin mode and set ticket price.
-        if (this.adminMode) {
-            this.ticketPrice = price;
-            return;
-        }
-
-        // Output rejected message.
-        System.out.println("Rejected - You must login.");
     }
 
     /**
@@ -272,5 +267,24 @@ public class TicketMachine {
 
         // Output rejected message.
         System.out.println("Rejected - You must login.");
+    }
+
+    /**
+     * Add a new ticket type to the machine.
+     *
+     * @param ticket 
+     */
+    public void addTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+    }
+
+    /**
+     * List out all the possible tickets.
+     */
+    public void listTickets() {
+        // Loop through the tickets.
+        for(Ticket ticket: this.tickets) {
+            System.out.println(ticket.getID() + ": " + ticket.getName() + " " + ticket.getPrice() + " DKK.");
+        }
     }
 }
