@@ -1,39 +1,51 @@
 package ticketmachine;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import ticketmachine.logging.Logger;
+import ticketmachine.logging.Action;
 
 public class TicketMachine {
     /**
      * The per ticket price.
+     *
+     * @var double
      */
     private double ticketPrice = 10;
     
     /**
      * The total customer balance.
+     *
+     * @var double
      */
     private double balance = 0;
     
     /**
      * The amount of tickets sold.
+     *
+     * @var int
      */
     private int soldTickets = 0;
     
     /**
      * The current admin mode status.
+     *
+     * @var boolean
      */
-    private boolean adminMode;
+    private boolean adminMode = false;
 
     /**
      * The admin password.
+     *
+     * @var String
      */
     private final String adminPassword = "1234";
-    
+
     /**
-     * 
+     * The transaction logging object.
+     *
+     * @var Logger
      */
-    private ArrayList<String> transactions = new ArrayList<String>();
-    
+    private Logger transactions = new Logger();
+
     /**
     * Return the ticket price.
     *
@@ -57,7 +69,7 @@ public class TicketMachine {
         }
         
         // Add amount to balance.
-        this.logAction("Added " + amount + " DKK.");
+        this.transactions.addEntry("Added " + amount + " DKK.");
         this.balance += amount;
         
         // Return the total balance.
@@ -84,7 +96,7 @@ public class TicketMachine {
         }
         
         // Log printing action.
-        this.logAction("Printed ticket.");
+        this.transactions.addEntry("Printed ticket.");
 
         // Output ticket to console.
         System.out.println("##########B##T#########");
@@ -118,7 +130,7 @@ public class TicketMachine {
         this.balance = 0;
 
         // Output notification.
-        this.logAction("Returned " + amount + " DKK.");
+        this.transactions.addEntry("Returned " + amount + " DKK.");
 
         // Return amount.
         return amount;
@@ -242,19 +254,18 @@ public class TicketMachine {
     public boolean isAdmin() {
         return this.adminMode;
     }
-    
     /**
      * Save an action to the transaction log.
      *
      * @param action The action to be logged.
      */
-    protected void logAction(String action) {
+    /*protected void logAction(String action) {
         // Add action to log.
         this.transactions.add(LocalDateTime.now() + ": " + action);
         
         // Output action to console.
         System.out.println(LocalDateTime.now() + ": " + action);
-    }
+    }*/
     
     /**
      * Output transactions to console.
@@ -263,10 +274,11 @@ public class TicketMachine {
         // Check admin mode.
         if (this.adminMode) {
             // Output transactions to console.
-            for (String transaction: this.transactions) {
-                System.out.println(transaction);
+            for (Action transaction: this.transactions.getList()) {
+                System.out.println(transaction.formatted());
             }
 
+            // Return out of function.
             return;
         }
 
