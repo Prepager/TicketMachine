@@ -44,7 +44,7 @@ public class TicketMachine {
      *
      * @var Logger
      */
-    private Logger transactions = new Logger();
+    private final Logger transactions = new Logger();
 
     /**
     * Return the ticket price.
@@ -69,7 +69,7 @@ public class TicketMachine {
         }
         
         // Add amount to balance.
-        this.transactions.addEntry("Added " + amount + " DKK.");
+        this.transactions.addEntry("Added " + amount + " DKK.", String.valueOf(amount));
         this.balance += amount;
         
         // Return the total balance.
@@ -96,7 +96,7 @@ public class TicketMachine {
         }
         
         // Log printing action.
-        this.transactions.addEntry("Printed ticket.");
+        this.transactions.addEntry("Printed ticket.", null);
 
         // Output ticket to console.
         System.out.println("##########B##T#########");
@@ -130,7 +130,7 @@ public class TicketMachine {
         this.balance = 0;
 
         // Output notification.
-        this.transactions.addEntry("Returned " + amount + " DKK.");
+        this.transactions.addEntry("Returned " + amount + " DKK.", String.valueOf(amount));
 
         // Return amount.
         return amount;
@@ -254,18 +254,6 @@ public class TicketMachine {
     public boolean isAdmin() {
         return this.adminMode;
     }
-    /**
-     * Save an action to the transaction log.
-     *
-     * @param action The action to be logged.
-     */
-    /*protected void logAction(String action) {
-        // Add action to log.
-        this.transactions.add(LocalDateTime.now() + ": " + action);
-        
-        // Output action to console.
-        System.out.println(LocalDateTime.now() + ": " + action);
-    }*/
     
     /**
      * Output transactions to console.

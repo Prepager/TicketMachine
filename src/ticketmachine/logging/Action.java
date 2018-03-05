@@ -1,6 +1,7 @@
 package ticketmachine.logging;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Action {
     /**
@@ -8,15 +9,34 @@ public class Action {
      *
      * @var LocalDateTime
      */
-    public LocalDateTime date;
+    protected LocalDateTime date;
 
     /**
      * The message of the action performed.
      *
      * @var String
      */
-    public String message;
+    protected String message;
+    
+    /**
+     * The parameter for the action.
+     *
+     * @var String
+     */
+    protected String parameter;
 
+    /**
+     * x
+     */
+    Action(String message, String param) {
+        // Set date of action to current time.
+        this.date = LocalDateTime.now();
+
+        // Save message and parameters on action.
+        this.message = message;
+        this.parameter = param;
+    }
+    
     /**
      * Return the data as a formatted string.
      *
