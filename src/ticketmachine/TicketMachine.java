@@ -131,19 +131,20 @@ public class TicketMachine {
      * Purchase a ticket with the passed id.
      *
      * @param id
+     * @return boolean
      */
-    public void purchaseTicket(int id) {
+    public boolean purchaseTicket(int id) {
         // Find the ticket matching the id.
         Ticket ticket = this.getTicket(id);
         
         // Return if the ticket was not found.
         if (ticket == null) {
-            return;
+            return false;
         }
         
         // Return if the client cannot afford the price.
         if (! this.client.canAfford(ticket.getPrice())) {
-            return;
+            return false;
         }
         
         // Remove the price from the clients balance.
@@ -153,8 +154,9 @@ public class TicketMachine {
         ticket.wasSold();
         this.log.addEntry("Ticket (" + ticket.getName() + ") was sold.", ticket.getPrice());
         
-        // Print the ticket.
+        // Print the ticket and return.
         printer.printTicket(this.client, ticket);
+        return true;
     }
     
     /**

@@ -1,2 +1,19 @@
 2018-03-08T13:08:57.203: Added 100.0 to balance.
 2018-03-08T13:09:09.380: Returned 100.0 to client.
+2018-03-08T13:44:38.570: Input amount must be above 0.
+2018-03-08T13:44:38.625: Returned 0.0 to client.
+2018-03-08T13:53:58.696: Ticket (test) was sold.
+2018-03-08T13:53:58.740: Added 10.0 to balance.
+2018-03-08T13:53:58.751: Returned 10.0 to client.
+2018-03-08T13:55:02.749: Ticket (test) was sold.
+2018-03-08T13:55:02.806: Added 10.0 to balance.
+2018-03-08T13:55:02.812: Returned 10.0 to client.
+2018-03-08T13:56:41.286: Ticket (test) was sold.
+2018-03-08T13:56:41.335: Added 10.0 to balance.
+2018-03-08T13:56:41.341: Returned 10.0 to client.
+2018-03-08T13:57:54.348: Ticket (test) was sold.
+2018-03-08T13:57:54.387: Added 10.0 to balance.
+2018-03-08T13:57:54.393: Returned 10.0 to client.
+2018-03-08T13:58:13.040: Ticket (test) was sold.
+2018-03-08T13:58:13.103: Added 10.0 to balance.
+2018-03-08T13:58:13.107: Returned 10.0 to client.
