@@ -24,7 +24,7 @@ public class TicketMachine {
      *
      * @var Logger
      */
-    private final Logger transactions = new Logger();
+    private final Logger log = new Logger();
 
     /**
      * The machine admin password.
@@ -38,7 +38,7 @@ public class TicketMachine {
      *
      * @var ArrayList
      */
-    private ArrayList<Ticket> tickets = new ArrayList<>();
+    private final ArrayList<Ticket> tickets = new ArrayList<>();
     
     /**
      * Return the connected client.
@@ -55,7 +55,7 @@ public class TicketMachine {
      * @return Logger
      */
     public Logger getLogger() {
-        return this.transactions;
+        return this.log;
     }
     
     /**
@@ -104,12 +104,12 @@ public class TicketMachine {
         // Check if amount is below or equal 0.
         if (amount <= 0) {
             // Return out of method.
-            this.transactions.addEntry("Input amount must be above 0.", null);
+            this.log.addEntry("Input amount must be above 0.", amount);
             return;
         }
         
         // Add the amount to the client balance.
-        this.transactions.addEntry("Added " + amount + " to balance.", null);
+        this.log.addEntry("Added " + amount + " to balance.", amount);
         this.client.addBalance(amount);
     }
     
@@ -124,7 +124,7 @@ public class TicketMachine {
         this.client.reset();
         
         // Return the money to the client.
-        this.transactions.addEntry("Returned " + balance + " to client.", null);
+        this.log.addEntry("Returned " + balance + " to client.", balance);
     }
     
     /**
@@ -151,7 +151,7 @@ public class TicketMachine {
         
         // Increment the ticket sales count.
         ticket.wasSold();
-        this.transactions.addEntry("Ticket (" + ticket.getName() + ") was sold.", null);
+        this.log.addEntry("Ticket (" + ticket.getName() + ") was sold.", ticket.getPrice());
         
         // Print the ticket.
         printer.printTicket(this.client, ticket);
@@ -201,6 +201,6 @@ public class TicketMachine {
         this.tickets.clear();
         
         // Clear transaction log.
-        // @wip
+        this.log.reset();
     }
 }

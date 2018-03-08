@@ -1,34 +1,36 @@
 package ticketmachine.logging;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-public class Action {
+public class Transaction {
     /**
-     * The date for the action creation.
+     * The date for the transaction creation.
      *
      * @var LocalDateTime
      */
     protected LocalDateTime date;
 
     /**
-     * The message of the action performed.
+     * The message of the transaction performed.
      *
      * @var String
      */
     protected String message;
     
     /**
-     * The parameter for the action.
+     * The parameter for the transaction.
      *
-     * @var String
+     * @var double
      */
-    protected String parameter;
+    protected double parameter;
 
     /**
-     * x
+     * Set the date, message and parameter on creation.
+     *
+     * @param message
+     * @param param
      */
-    Action(String message, String param) {
+    Transaction(String message, double param) {
         // Set date of action to current time.
         this.date = LocalDateTime.now();
 

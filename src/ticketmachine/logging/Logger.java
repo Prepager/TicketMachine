@@ -1,17 +1,14 @@
 package ticketmachine.logging;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Logger {
     /**
-     * The list of saved actions.
+     * The list of saved transaction.
      *
      * @var ArrayList
      */
-    final private ArrayList<Action> list = new ArrayList<Action>();
+    final private ArrayList<Transaction> list = new ArrayList<>();
     
     /**
      * Add a new entry to the list
@@ -19,23 +16,30 @@ public class Logger {
      * @param message
      * @param param
      */
-    public void addEntry(String message, String param) {
+    public void addEntry(String message, double param) {
         // Create a new action with date and message.
-        Action action = new Action(message, param);
+        Transaction transaction = new Transaction(message, param);
         
-        // Add the new action to the list.
-        this.list.add(action);
+        // Add the new transaction to the list.
+        this.list.add(transaction);
         
-        // Output the action to the console.
-        System.out.println(action.formatted());
+        // Output the transaction to the console.
+        System.out.println(transaction.formatted());
     }
     
     /**
-     * Return the current action list.
+     * Return the current transaction list.
      *
      * @return ArrayList
      */
-    public ArrayList<Action> getList() {
+    public ArrayList<Transaction> getList() {
         return this.list;
+    }
+    
+    /**
+     * Clear the list of transactions.
+     */
+    public void reset() {
+        this.list.clear();
     }
 }
