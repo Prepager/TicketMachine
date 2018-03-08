@@ -1,11 +1,9 @@
 package ticketmachine.gui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import ticketmachine.TicketMachine;
 import ticketmachine.Ticket;
 
@@ -85,94 +83,73 @@ public class ContentFrame extends Frame {
      */
     public final void bindActions() {
         // Refresh data on tab change.
-        this.Tabs.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                ContentFrame.this.refresh();
-            }
+        this.Tabs.addChangeListener((ChangeEvent e) -> {
+            ContentFrame.this.refresh();
         });
         
         // Bind return change button.
-        this.ReturnChange.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ContentFrame.this.machine.returnChange();
-                ContentFrame.this.refresh();
-            }
+        this.ReturnChange.addActionListener((ActionEvent e) -> {
+            ContentFrame.this.machine.returnChange();
+            ContentFrame.this.refresh();
         });
 
         // Bind input amount button.
-        this.InputAmount.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                double amount = Double.parseDouble(ContentFrame.this.Amount.getText());
-
-                ContentFrame.this.machine.inputMoney(amount);
-                ContentFrame.this.refresh();
-                
-                ContentFrame.this.Amount.setText("0");
-            }
+        this.InputAmount.addActionListener((ActionEvent e) -> {
+            double amount = Double.parseDouble(ContentFrame.this.Amount.getText());
+            
+            ContentFrame.this.machine.inputMoney(amount);
+            ContentFrame.this.refresh();
+            
+            ContentFrame.this.Amount.setText("0");
         });
         
         // Bind purchase ticket button.
-        this.PurchaseTicket.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Ticket ticket = (Ticket) ContentFrame.this.Tickets.getSelectedItem();
-
-                ContentFrame.this.machine.purchaseTicket(ticket.getID());
-                ContentFrame.this.refresh();
-            }
+        this.PurchaseTicket.addActionListener((ActionEvent e) -> {
+            Ticket ticket = (Ticket) ContentFrame.this.Tickets.getSelectedItem();
+            
+            ContentFrame.this.machine.purchaseTicket(ticket.getID());
+            ContentFrame.this.refresh();
         });
         
         // Hide protected pane on startup.
         this.Protected.setVisible(false);
         
         // Bind login button.
-        this.Login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Get password from element.
-                String password = String.valueOf(ContentFrame.this.Password.getPassword());
-                
-                // Attempt to login.
-                boolean attempt = ContentFrame.this.machine.login(password);
-
-                // If successful show protected pane.
-                if (attempt) {
-                    ContentFrame.this.LoginPane.setVisible(false);
-                    ContentFrame.this.Protected.setVisible(true);
-                }
-                
-                // Reset password field to 'secret'.
-                ContentFrame.this.Password.setText("secret");
-                
-                // Refresh the data with protected.
-                ContentFrame.this.refresh();
+        this.Login.addActionListener((ActionEvent e) -> {
+            // Get password from element.
+            String password = String.valueOf(ContentFrame.this.Password.getPassword());
+            
+            // Attempt to login.
+            boolean attempt = ContentFrame.this.machine.login(password);
+            
+            // If successful show protected pane.
+            if (attempt) {
+                ContentFrame.this.LoginPane.setVisible(false);
+                ContentFrame.this.Protected.setVisible(true);
             }
+            
+            // Reset password field to 'secret'.
+            ContentFrame.this.Password.setText("secret");
+            
+            // Refresh the data with protected.
+            ContentFrame.this.refresh();
         });
         
         // Bind logout button.
-        this.Logout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Reset admin state by loggin in empty.
-                ContentFrame.this.machine.logout();
-                
-                // Hide protected pane and show login.
-                ContentFrame.this.LoginPane.setVisible(true);
-                ContentFrame.this.Protected.setVisible(false);
-            }
+        this.Logout.addActionListener((ActionEvent e) -> {
+            // Reset admin state by loggin in empty.
+            ContentFrame.this.machine.logout();
+            
+            // Hide protected pane and show login.
+            ContentFrame.this.LoginPane.setVisible(true);
+            ContentFrame.this.Protected.setVisible(false);
         });
         
         // Bind sold tickets dropdown.
-        this.SoldTickets.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Ticket ticket = (Ticket) ContentFrame.this.SoldTickets.getSelectedItem();
-                
-                ContentFrame.this.Sold.setText("Sold: " + ticket.getSold());
-            }
+        this.SoldTickets.addActionListener((ActionEvent e) -> {
+            Ticket ticket = (Ticket) ContentFrame.this.SoldTickets.getSelectedItem();
+            
+            ContentFrame.this.Sold.setText("Sold: " + ticket.getSold());
         });
     }
 }
