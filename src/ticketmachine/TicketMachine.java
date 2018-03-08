@@ -173,7 +173,7 @@ public class TicketMachine {
             double total = 0;
 
             for(Ticket item: this.tickets) {
-                total += item.getSold() * item.getPrice();
+                total += item.getTotal();
             }
 
             return total;

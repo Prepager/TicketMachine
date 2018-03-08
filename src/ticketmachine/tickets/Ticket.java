@@ -27,7 +27,7 @@ public class Ticket {
      *
      * @var int
      */
-    private int sold;
+    private int sold = 0;
     
     /**
      * Set the id, price and name on creation.
@@ -40,7 +40,6 @@ public class Ticket {
         this.id = id;
         this.price = price;
         this.name = name;
-        this.sold = 0;
     }
 
     /**
@@ -80,6 +79,15 @@ public class Ticket {
     }
     
     /**
+     * Set the amount of tickets sold.
+     *
+     * @param amount
+     */
+    public void setSold(int amount) {
+        this.sold = amount;
+    }
+    
+    /**
      * Increment the sold count.
      */
     public void wasSold() {
@@ -87,7 +95,16 @@ public class Ticket {
     }
 
     /**
-     * Change the toString format.
+     * Return the total amount sold.
+     *
+     * @return double
+     */
+    public double getTotal() {
+        return this.price * this.sold;
+    }
+    
+    /**
+     * Change the toString format for use in dropdown.
      *
      * @return String
      */
