@@ -5,18 +5,18 @@ import ticketmachine.tickets.Ticket;
 
 public class UseTicketMachine {
     /**
-     * x
+     * Store the ticket machine.
      *
      * @var TicketMachine
      */
-    TicketMachine machine;
+    private final TicketMachine machine;
 
     /**
-     * x
+     * Store the main gui frame.
      *
      * @var Frame
      */
-    ContentFrame frame;
+    private final ContentFrame frame;
 
     /**
      * Call the non-static constructor.
