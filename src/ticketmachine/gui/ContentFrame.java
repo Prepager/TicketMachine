@@ -2,13 +2,12 @@ package ticketmachine.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import ticketmachine.TicketMachine;
-import ticketmachine.tickets.Ticket;
+import ticketmachine.Ticket;
 
 public class ContentFrame extends Frame {
     /**
@@ -34,7 +33,7 @@ public class ContentFrame extends Frame {
      */
     public void refresh() {
         // Update the total balance.
-        this.setBalance(this.machine.getBalance());
+        this.setBalance(this.machine.getClient().getBalance());
         
         // Remove all tickets from dropdown.
         this.Tickets.removeAllItems();
@@ -53,7 +52,7 @@ public class ContentFrame extends Frame {
         );
         
         // Only update admin data if logged in.
-        if (this.machine.isAdmin()) {
+        if (this.machine.getClient().isAdmin()) {
             // Update the total amount sold.
             this.Total.setText("Total: " + String.valueOf(this.machine.getTotal()) + " DKK");
         }
@@ -108,7 +107,7 @@ public class ContentFrame extends Frame {
             public void actionPerformed(ActionEvent e) {
                 double amount = Double.parseDouble(ContentFrame.this.Amount.getText());
 
-                ContentFrame.this.machine.addMoney(amount);
+                ContentFrame.this.machine.inputMoney(amount);
                 ContentFrame.this.refresh();
                 
                 ContentFrame.this.Amount.setText("0");
@@ -121,7 +120,7 @@ public class ContentFrame extends Frame {
             public void actionPerformed(ActionEvent e) {
                 Ticket ticket = (Ticket) ContentFrame.this.Tickets.getSelectedItem();
 
-                ContentFrame.this.machine.printTicket(ticket.getID());
+                ContentFrame.this.machine.purchaseTicket(ticket.getID());
                 ContentFrame.this.refresh();
             }
         });
@@ -137,7 +136,7 @@ public class ContentFrame extends Frame {
                 String password = String.valueOf(ContentFrame.this.Password.getPassword());
                 
                 // Attempt to login.
-                boolean attempt = ContentFrame.this.machine.adminLogin(password);
+                boolean attempt = ContentFrame.this.machine.login(password);
 
                 // If successful show protected pane.
                 if (attempt) {
@@ -158,7 +157,7 @@ public class ContentFrame extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Reset admin state by loggin in empty.
-                ContentFrame.this.machine.adminLogin("");
+                ContentFrame.this.machine.logout();
                 
                 // Hide protected pane and show login.
                 ContentFrame.this.LoginPane.setVisible(true);

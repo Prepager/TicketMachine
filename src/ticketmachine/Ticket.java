@@ -1,4 +1,4 @@
-package ticketmachine.tickets;
+package ticketmachine;
 
 public class Ticket {
     /**

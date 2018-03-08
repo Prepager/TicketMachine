@@ -1,7 +1,6 @@
 package ticketmachine;
 
 import ticketmachine.gui.ContentFrame;
-import ticketmachine.tickets.Ticket;
 
 public class UseTicketMachine {
     /**
