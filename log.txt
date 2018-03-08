@@ -1,0 +1,2 @@
+2018-03-08T13:08:57.203: Added 100.0 to balance.
+2018-03-08T13:09:09.380: Returned 100.0 to client.
