@@ -15,13 +15,6 @@ public class TicketMachine {
     private double balance = 0;
     
     /**
-     * The amount of tickets sold.
-     *
-     * @var int
-     */
-    private int soldTickets = 0;
-    
-    /**
      * The current admin mode status.
      *
      * @var boolean
@@ -55,7 +48,7 @@ public class TicketMachine {
     * @param amount The amount to be added.
     * @return double The customers total balance.
     */
-    public double addMoney(int amount) {
+    public double addMoney(double amount) {
         // Check if amount is negative
         if (amount < 0) {
             System.out.println("Amount must be a positive number.");
@@ -86,12 +79,7 @@ public class TicketMachine {
     */
     public void printTicket(int ticket) {
         // Find the selected ticket.
-        Ticket selectedTicket = null;
-        for(Ticket item: this.tickets) {
-            if (item.getID() == ticket) {
-                selectedTicket = item;
-            }
-        }
+        Ticket selectedTicket = this.getTicket(ticket);
         
         // Return out if not found.
         if (selectedTicket == null) {
@@ -122,7 +110,7 @@ public class TicketMachine {
 
         // Increase sold count.
         System.out.println("Increased ticket sale count.");
-        this.soldTickets++;
+        selectedTicket.wasSold();
 
         // Decrease balance by price.
         System.out.println("Removed ticket price from balance.");
@@ -182,8 +170,13 @@ public class TicketMachine {
     public double getTotal() {
         // Check admin mode and return earnings.
         if (this.adminMode) {
-            return 1; // @wip
-            //return this.ticketPrice * this.soldTickets;
+            double total = 0;
+
+            for(Ticket item: this.tickets) {
+                total += item.getSold() * item.getPrice();
+            }
+
+            return total;
         }
 
         // Output rejected message and return 0.
@@ -194,12 +187,20 @@ public class TicketMachine {
     /**
     * Return the amount of sold tickets.
     *
+    * @param ticket
     * @return int The total amount of tickets sold or 0.
     */
-    public int getSoldTickets() {
+    public int getSoldTickets(int ticket) {
         // Check admin mode and return ticket sales count.
         if (this.adminMode) {
-            return this.soldTickets;
+            // Find the selected ticket.
+            Ticket selectedTicket = this.getTicket(ticket);
+            if (selectedTicket == null) {
+                return 0;
+            }
+            
+            // Get the sold count for the ticket.
+            return selectedTicket.getSold();
         }
 
         // Output rejected message and return 0.
@@ -215,7 +216,7 @@ public class TicketMachine {
         if (this.adminMode) {
             // Reset sold ticket count.
             System.out.println("Reset sold ticket count.");
-            this.soldTickets = 0;
+            //this.soldTickets = 0;
             return;
         }
 
@@ -228,18 +229,17 @@ public class TicketMachine {
     *
     * @param amount The amount of tickets sold.
     */
-    public void setSoldTickets(int amount) {
+    /*public void setSoldTickets(int amount) {
         // Check admin mode.
         if (this.adminMode) {
             // Set sold ticket count.
             System.out.println("Set sold ticket count to " + amount);
-            this.soldTickets = amount;
             return;
         }
 
         // Output rejected message.
         System.out.println("Rejected - You must login.");
-    }
+    }*/
 
     /**
     * Return weather in admin mode or not. 
@@ -277,6 +277,15 @@ public class TicketMachine {
     public void addTicket(Ticket ticket) {
         this.tickets.add(ticket);
     }
+    
+    /**
+     * Return the list of possible tickets.
+     *
+     * @return ArrayList
+     */
+    public ArrayList<Ticket> getTickets() {
+        return this.tickets;
+    }
 
     /**
      * List out all the possible tickets.
@@ -286,5 +295,23 @@ public class TicketMachine {
         for(Ticket ticket: this.tickets) {
             System.out.println(ticket.getID() + ": " + ticket.getName() + " " + ticket.getPrice() + " DKK.");
         }
+    }
+    
+    /**
+     * x
+     *
+     * @param id
+     * @return Ticket
+     */
+    public Ticket getTicket(int id) {
+        // Find the selected ticket.
+        for(Ticket item: this.tickets) {
+            if (item.getID() == id) {
+                return item;
+            }
+        }
+        
+        //
+        return null;
     }
 }

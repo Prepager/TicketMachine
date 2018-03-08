@@ -23,8 +23,16 @@ public class Ticket {
     private final String name;
     
     /**
+     * The amount sold of this ticket.
+     *
+     * @var int
+     */
+    private int sold;
+    
+    /**
      * Set the id, price and name on creation.
      *
+     * @param id
      * @param price
      * @param name
      */
@@ -32,6 +40,7 @@ public class Ticket {
         this.id = id;
         this.price = price;
         this.name = name;
+        this.sold = 0;
     }
 
     /**
@@ -59,5 +68,32 @@ public class Ticket {
      */
     public String getName() {
         return this.name;
+    }
+    
+    /**
+     * Return the amount of sold tickets.
+     *
+     * @return int
+     */
+    public int getSold() {
+        return this.sold;
+    }
+    
+    /**
+     * Increment the sold count.
+     */
+    public void wasSold() {
+        this.sold++;
+    }
+
+    /**
+     * Change the toString format.
+     *
+     * @return String
+     */
+    @Override
+    public String toString()
+    {
+        return this.getName() + ", " + this.getPrice() + " DKK";
     }
 }
