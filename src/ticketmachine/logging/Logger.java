@@ -1,7 +1,6 @@
 package ticketmachine.logging;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
@@ -12,6 +11,8 @@ import java.util.ArrayList;
 public class Logger {
     /**
      * The log file location.
+     *
+     * @var String
      */
     private final String file = "log.txt";
 
@@ -21,7 +22,7 @@ public class Logger {
      * @var ArrayList
      */
     private final ArrayList<Transaction> list = new ArrayList<>();
-    
+
     /**
      * Add a new entry to the list
      *
@@ -31,13 +32,13 @@ public class Logger {
     public void addEntry(String message, double param) {
         // Create a new action with date and message.
         Transaction transaction = new Transaction(message, param);
-        
+
         // Add the new transaction to the list.
         this.list.add(transaction);
-        
+
         // Output the transaction to the console.
         System.out.println(transaction.formatted());
-        
+
         // Write formatted transaction to file.
         try {
             // Add linebreak to end of line.
@@ -45,7 +46,7 @@ public class Logger {
 
             // Find file path and opening method.
             Path path = Paths.get(this.file);
-            OpenOption method = (Files.exists(path) 
+            OpenOption method = (Files.exists(path)
                 ? StandardOpenOption.APPEND
                 : StandardOpenOption.CREATE
             );
@@ -56,7 +57,7 @@ public class Logger {
             System.out.println("Couldn't save log to file. ERROR: " + e.getMessage());
         }
     }
-    
+
     /**
      * Return the current transaction list.
      *
@@ -65,7 +66,7 @@ public class Logger {
     public ArrayList<Transaction> getList() {
         return this.list;
     }
-    
+
     /**
      * Clear the list of transactions.
      */

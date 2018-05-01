@@ -11,9 +11,9 @@ public class TicketTest {
     public void testGetID() {
         System.out.println("getID");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
-        assertEquals(instance.getID(), 10);
+        assertEquals(instance.getID(), "child");
     }
 
     /**
@@ -23,7 +23,7 @@ public class TicketTest {
     public void testGetPrice() {
         System.out.println("getPrice");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
         assertEquals(instance.getPrice(), 50, 0.0);
     }
@@ -35,9 +35,9 @@ public class TicketTest {
     public void testGetName() {
         System.out.println("getName");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
-        assertEquals(instance.getName(), "test");
+        assertEquals(instance.getName(), "Child");
     }
 
     /**
@@ -47,7 +47,7 @@ public class TicketTest {
     public void testGetSold() {
         System.out.println("getSold");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
         assertEquals(instance.getSold(), 0);
         instance.setSold(5);
@@ -61,7 +61,7 @@ public class TicketTest {
     public void testSetSold() {
         System.out.println("setSold");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
         assertEquals(instance.getSold(), 0);
         instance.setSold(5);
@@ -75,10 +75,10 @@ public class TicketTest {
     public void testWasSold() {
         System.out.println("wasSold");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
 
         assertEquals(instance.getSold(), 0);
-        instance.wasSold();
+        instance.wasSold(10);
         assertEquals(instance.getSold(), 1);
     }
 
@@ -89,11 +89,12 @@ public class TicketTest {
     public void testGetTotal() {
         System.out.println("getTotal");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 10, "Child");
 
         assertEquals(instance.getTotal(), 0, 0.0);
-        instance.setSold(2);
-        assertEquals(instance.getTotal(), 100, 0.0);
+        instance.wasSold(10);
+        instance.wasSold(10);
+        assertEquals(instance.getTotal(), 200, 0.0);
     }
 
     /**
@@ -103,7 +104,7 @@ public class TicketTest {
     public void testToString() {
         System.out.println("toString");
 
-        Ticket instance = new Ticket(10, 50, "test");
+        Ticket instance = new Ticket("child", 50, "Child");
         instance.toString();
     }
 }

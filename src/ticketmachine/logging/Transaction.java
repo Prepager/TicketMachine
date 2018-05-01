@@ -16,7 +16,7 @@ public class Transaction {
      * @var String
      */
     protected String message;
-    
+
     /**
      * The parameter for the transaction.
      *
@@ -38,7 +38,7 @@ public class Transaction {
         this.message = message;
         this.parameter = param;
     }
-    
+
     /**
      * Return the data as a formatted string.
      *

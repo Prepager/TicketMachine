@@ -7,14 +7,14 @@ public class Client {
      * @var double
      */
     private double balance = 0;
-    
+
     /**
-     * The current admin status.
+     * The current administrator status.
      *
      * @var boolean
      */
     private boolean admin = false;
-    
+
     /**
      * Return the total balance.
      *
@@ -23,7 +23,7 @@ public class Client {
     public double getBalance() {
         return this.balance;
     }
-    
+
     /**
      * Set the total balance.
      *
@@ -32,7 +32,7 @@ public class Client {
     public void setBalance(double amount) {
         this.balance = amount;
     }
-    
+
     /**
      * Add amount to the total balance.
      *
@@ -41,7 +41,7 @@ public class Client {
     public void addBalance(double amount) {
         this.balance += amount;
     }
-    
+
     /**
      * Remove amount from the the total balance.
      *
@@ -60,27 +60,27 @@ public class Client {
     public boolean canAfford(double amount) {
         return this.balance >= amount;
     }
-    
+
     /**
-     * Return the current admin status.
+     * Return the current administrator status.
      *
      * @return boolean
      */
     public boolean isAdmin() {
         return this.admin;
     }
-    
+
     /**
-     * Set the current admin status.
+     * Set the current administrator status.
      *
      * @param isAdmin
      */
     public void setAdmin(boolean isAdmin) {
         this.admin = isAdmin;
     }
-    
+
     /**
-     * Attempt to login as admin.
+     * Attempt to login as administrator.
      *
      * @param password
      * @param attempt
@@ -91,19 +91,19 @@ public class Client {
         if (! attempt.equals(password)) {
             return false;
         }
-        
+
         // Enable admin mode and return.
         this.setAdmin(true);
         return true;
     }
-    
+
     /**
-     * Disable admin mode.
+     * Disable administrator mode.
      */
     public void logout() {
         this.setAdmin(false);
     }
-    
+
     /**
      * Reset the client to default.
      */

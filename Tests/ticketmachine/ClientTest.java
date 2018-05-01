@@ -23,10 +23,10 @@ public class ClientTest {
     @Test
     public void testSetBalance() {
         System.out.println("setBalance");
-        
+
         Client instance = new Client();
         instance.setBalance(10);
-        
+
         assertEquals(instance.getBalance(), 10, 0.0);
     }
 
@@ -40,7 +40,7 @@ public class ClientTest {
         Client instance = new Client();
         instance.setBalance(10);
         instance.addBalance(10);
-        
+
         assertEquals(instance.getBalance(), 20, 0.0);
     }
 
@@ -54,7 +54,7 @@ public class ClientTest {
         Client instance = new Client();
         instance.setBalance(20);
         instance.removeBalance(10);
-        
+
         assertEquals(instance.getBalance(), 10, 0.0);
     }
 
@@ -80,7 +80,7 @@ public class ClientTest {
         System.out.println("isAdmin");
 
         Client instance = new Client();
-        
+
         assertEquals(instance.isAdmin(), false);
         instance.setAdmin(true);
         assertEquals(instance.isAdmin(), true);
@@ -92,9 +92,9 @@ public class ClientTest {
     @Test
     public void testSetAdmin() {
         System.out.println("setAdmin");
-        
+
         Client instance = new Client();
-        
+
         instance.setAdmin(true);
         assertEquals(instance.isAdmin(), true);
         instance.setAdmin(false);
@@ -109,7 +109,7 @@ public class ClientTest {
         System.out.println("login");
 
         Client instance = new Client();
-        
+
         assertEquals(instance.login("abc", "abc"), true);
         assertEquals(instance.login("123", "abc"), false);
     }
@@ -134,11 +134,11 @@ public class ClientTest {
     @Test
     public void testReset() {
         System.out.println("reset");
-        
+
         Client instance = new Client();
         instance.setBalance(100);
         instance.setAdmin(true);
-        
+
         instance.reset();
         assertEquals(instance.getBalance(), 0, 0.0);
         assertEquals(instance.isAdmin(), false);

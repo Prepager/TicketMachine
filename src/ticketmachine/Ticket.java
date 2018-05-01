@@ -4,9 +4,9 @@ public class Ticket {
     /**
      * The ticket id.
      *
-     * @var int
+     * @var String
      */
-    private final int id;
+    private final String id;
 
     /**
      * The price per ticket.
@@ -14,21 +14,28 @@ public class Ticket {
      * @var double
      */
     private final double price;
-    
+
     /**
      * The name of the ticket.
      *
      * @var String
      */
     private final String name;
-    
+
     /**
      * The amount sold of this ticket.
      *
-     * @var int
+     * @var integer
      */
     private int sold = 0;
-    
+
+    /**
+     * The amount of KMs sold of this ticket.
+     *
+     * @var double
+     */
+    private double distance = 0;
+
     /**
      * Set the id, price and name on creation.
      *
@@ -36,7 +43,7 @@ public class Ticket {
      * @param price
      * @param name
      */
-    public Ticket(int id, double price, String name) {
+    public Ticket(String id, double price, String name) {
         this.id = id;
         this.price = price;
         this.name = name;
@@ -45,12 +52,12 @@ public class Ticket {
     /**
      * Return the id of the ticket.
      *
-     * @return int
+     * @return String
      */
-    public int getID() {
+    public String getID() {
         return this.id;
     }
-    
+
     /**
      * Return the price of the ticket.
      *
@@ -59,7 +66,7 @@ public class Ticket {
     public double getPrice() {
         return this.price;
     }
-    
+
     /**
      * Return the name of the ticket.
      *
@@ -68,16 +75,16 @@ public class Ticket {
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * Return the amount of sold tickets.
      *
-     * @return int
+     * @return integer
      */
     public int getSold() {
         return this.sold;
     }
-    
+
     /**
      * Set the amount of tickets sold.
      *
@@ -86,12 +93,15 @@ public class Ticket {
     public void setSold(int amount) {
         this.sold = amount;
     }
-    
+
     /**
-     * Increment the sold count.
+     * Increment the sold count and add distance.
+     *
+     * @param distance
      */
-    public void wasSold() {
+    public void wasSold(double distance) {
         this.sold++;
+        this.distance += distance;
     }
 
     /**
@@ -100,11 +110,11 @@ public class Ticket {
      * @return double
      */
     public double getTotal() {
-        return this.price * this.sold;
+        return this.price * this.distance;
     }
-    
+
     /**
-     * Change the toString format for use in dropdown.
+     * Change the toString format for use in drop-down.
      *
      * @return String
      */

@@ -4,23 +4,23 @@ public class Printer {
     /**
      * Print the ticket to the client.
      *
-     * @param client
      * @param ticket
+     * @param from
+     * @param to
+     * @param distance
      */
-    public void printTicket(Client client, Ticket ticket) {
+    public void printTicket(Ticket ticket, String from, String to, int distance) {
         // Store ticket data variables.
-        double price = ticket.getPrice();
-        double balance = client.getBalance();
-        
+        String name = ticket.getName();
+
         // Output ticket to console.
         System.out.println("##########B##T#########");
-        System.out.println("# BlueJ Trafikselskab #");
-        System.out.println("#                     #");
-        System.out.println("#        Ticket       #");
-        System.out.println("#       " + price + " DKK.     #");
-        System.out.println("#                     #");
-        System.out.println("##########B##T#########");
-        System.out.println("You have " + balance + " DKK left");
+        System.out.println(" BlueJ Transportation");
+        System.out.println("");
+        System.out.println(" " + name + " Ticket");
+        System.out.println("");
+        System.out.println(" From: " + from );
+        System.out.println(" To: " + to );
         System.out.println("##########B##T#########");
         System.out.println();
     }

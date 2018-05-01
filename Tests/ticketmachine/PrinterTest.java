@@ -1,7 +1,6 @@
 package ticketmachine;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class PrinterTest {
     /**
@@ -12,9 +11,9 @@ public class PrinterTest {
         System.out.println("printTicket");
 
         Client client = new Client();
-        Ticket ticket = new Ticket(1, 10, "test");
-        
+        Ticket ticket = new Ticket("child", 10, "child");
+
         Printer instance = new Printer();
-        instance.printTicket(client, ticket);
+        instance.printTicket(ticket, "From St.", "To St.", 10);
     }
 }
