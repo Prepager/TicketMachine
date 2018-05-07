@@ -204,8 +204,8 @@ public class PaymentController implements Initializable {
      */
     public void reloadBalance() {
         // Get balance and remaining.
-        double clientBalance = this.parent.getMachine().getClient().getBalance();
-        double clientRemaining = this.totalPrice - clientBalance;
+        double clientBalance =  Math.round(this.parent.getMachine().getClient().getBalance());
+        double clientRemaining =  Math.round(this.totalPrice - clientBalance);
 
         // Set variables on labels.
         this.balance.setText(clientBalance + " DKK");

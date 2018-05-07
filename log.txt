@@ -7,3 +7,15 @@
 2018-05-07T11:22:55.144: Ticket (Adult) was sold.
 2018-05-07T11:22:55.144: Ticket (Adult) was sold.
 2018-05-07T11:22:55.145: Returned 57.80000000000001 to client.
+2018-05-07T12:44:39.510: Added 500.0 to balance.
+2018-05-07T12:44:41.225: Added 50.0 to balance.
+2018-05-07T12:45:24.867: Added 55.0 to balance.
+2018-05-07T12:45:25.914: Added 55.0 to balance.
+2018-05-07T12:45:26.096: Added 55.0 to balance.
+2018-05-07T12:45:27.479: Ticket (Child) was sold.
+2018-05-07T12:45:27.480: Ticket (Child) was sold.
+2018-05-07T12:45:27.483: Ticket (Child) was sold.
+2018-05-07T12:45:27.484: Ticket (Child) was sold.
+2018-05-07T12:45:27.484: Ticket (Child) was sold.
+2018-05-07T12:45:27.485: Ticket (Adult) was sold.
+2018-05-07T12:45:27.486: Returned 101.99999999999997 to client.
