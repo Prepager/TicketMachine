@@ -1,0 +1,9 @@
+2018-05-07T11:22:49.698: Added 50.0 to balance.
+2018-05-07T11:22:51.754: Added 60.0 to balance.
+2018-05-07T11:22:55.138: Ticket (Child) was sold.
+2018-05-07T11:22:55.139: Ticket (Child) was sold.
+2018-05-07T11:22:55.142: Ticket (Child) was sold.
+2018-05-07T11:22:55.143: Ticket (Child) was sold.
+2018-05-07T11:22:55.144: Ticket (Adult) was sold.
+2018-05-07T11:22:55.144: Ticket (Adult) was sold.
+2018-05-07T11:22:55.145: Returned 57.80000000000001 to client.

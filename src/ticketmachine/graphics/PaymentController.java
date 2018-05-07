@@ -172,10 +172,10 @@ public class PaymentController implements Initializable {
         int seniors = this.parent.getSeniors();
 
         // Calculate total prices for passengers.
-        double childrenTotalPrice = (machine.getTicket("child").getPrice() * children) * totalDistance;
-        double adultsTotalPrice = (machine.getTicket("adult").getPrice()* adults) * totalDistance;
-        double seniorsTotalPrice = (machine.getTicket("senior").getPrice() * seniors) * totalDistance;
-        this.totalPrice = childrenTotalPrice + adultsTotalPrice + seniorsTotalPrice;
+        double childrenTotalPrice = Math.round((machine.getTicket("child").getPrice() * children) * totalDistance);
+        double adultsTotalPrice = Math.round((machine.getTicket("adult").getPrice()* adults) * totalDistance);
+        double seniorsTotalPrice = Math.round((machine.getTicket("senior").getPrice() * seniors) * totalDistance);
+        this.totalPrice = Math.round(childrenTotalPrice + adultsTotalPrice + seniorsTotalPrice);
 
         // Set the to and from station names.
         this.from.setText(machine.getName());
