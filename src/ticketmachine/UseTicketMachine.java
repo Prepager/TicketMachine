@@ -23,12 +23,8 @@ public class UseTicketMachine {
      * @param arg
      */
     public static void main(String[] arg) {
-        // Define machine location lat and long.
-        double latitude = 55.785575;
-        double longitude = 12.521367;
-
-        // Create new ticket machine with settings
-        machine = new TicketMachine("DTU Lyngby", latitude, longitude);
+        // Create new ticket machine with name and lat, long.
+        machine = new TicketMachine("DTU Lyngby", 55.785575, 12.521367);
 
         // Add child, adult and senior ticket types.
         machine.addTicket(new Ticket("child", 0.2, "Child"));
